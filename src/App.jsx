@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Login from "./views/guest/Login";
 import NotFoundPage from "./views/404";
+import Welcome from "./views/Welcome";
 
 function App() {
   const status = useSelector((state) => state.auth.isLoggedIn);
@@ -9,7 +10,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<>Home page ho hai yo chai</>} />
+        <Route path="/" element={<Welcome />} />
         {
           status ? (
             <Route path="/dashboard" element={<>Logged in vayo hai ta</>} />
