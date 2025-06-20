@@ -1,10 +1,24 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Login from "./views/guest/Login";
+
 function App() {
-
+  const status = useSelector((state) => state.auth.isLoggedIn);
+  console.log(status);
   return (
-    <>
-
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<>Home page ho hai yo chai</>} />
+        {
+          status ? (
+            <Route path="/dashboard" element={<>Logged in vayo hai ta</>} />
+          ) : (
+            <Route path="/login" element={<Login />} />
+          )
+        }
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
