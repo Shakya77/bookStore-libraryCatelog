@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Login from "./views/guest/Login";
+import NotFoundPage from "./views/404";
 
 function App() {
   const status = useSelector((state) => state.auth.isLoggedIn);
@@ -16,6 +17,7 @@ function App() {
             <Route path="/login" element={<Login />} />
           )
         }
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );
