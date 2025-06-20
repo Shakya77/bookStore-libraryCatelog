@@ -38,12 +38,6 @@ function Navbar() {
                             <NavLink to="/about" className={() => linkClass("/about")}>
                                 About
                             </NavLink>
-                            <NavLink to="/services" className={() => linkClass("/services")}>
-                                Services
-                            </NavLink>
-                            <NavLink to="/contact" className={() => linkClass("/contact")}>
-                                Contact
-                            </NavLink>
                         </div>
 
                         {/* Desktop Actions */}

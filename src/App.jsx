@@ -24,7 +24,6 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route element={<GuestLayout />}>
                 <Route path="/about" element={<>About</>} />
-                <Route path="/services" element={<>Services</>} />
               </Route>
             </Route>
           )
