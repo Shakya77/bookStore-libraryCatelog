@@ -1,8 +1,13 @@
 import { Book, BookOpen, Home, Search, ArrowLeft } from "lucide-react"
 import { Button } from "../components/Button"
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function NotFoundPage() {
+    useEffect(() => {
+        document.title = "404 - Not Found";
+    }, []);
+
     const navigate = useNavigate();
 
     return (
