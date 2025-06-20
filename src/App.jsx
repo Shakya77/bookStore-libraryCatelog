@@ -4,6 +4,7 @@ import Login from "./views/guest/Login";
 import NotFoundPage from "./views/404";
 import Welcome from "./views/Welcome";
 import GuestLayout from "./views/layouts/guest/GuestLayout";
+import Register from "./views/guest/Register";
 
 function App() {
   const status = useSelector((state) => state.auth.isLoggedIn);
@@ -20,7 +21,10 @@ function App() {
           ) : (
             <Route>
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route element={<GuestLayout />}>
+                <Route path="/about" element={<>About</>} />
+                <Route path="/services" element={<>Services</>} />
               </Route>
             </Route>
           )

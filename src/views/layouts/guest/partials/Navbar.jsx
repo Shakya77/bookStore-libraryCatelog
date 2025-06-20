@@ -1,10 +1,11 @@
 import { useState } from "react"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
 import { Menu, X, Search } from "lucide-react"
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
     const location = useLocation()
+    const navigate = useNavigate();
 
     const toggleMenu = () => setIsOpen(!isOpen)
 
@@ -55,8 +56,9 @@ function Navbar() {
                                     className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                                 />
                             </div>
-                            <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium">
-                                Sign In
+                            <button onClick={() => navigate("/login")}
+                                className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                                Login
                             </button>
                         </div>
 
