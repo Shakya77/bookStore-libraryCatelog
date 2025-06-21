@@ -87,7 +87,7 @@ export default function Login() {
                 localStorage.setItem("token", data.token)
                 dispatch(login(true))
                 toast.success("Login successful! Redirecting...")
-                setTimeout(() => navigate("/dashboard"), 1000)
+                setTimeout(() => navigate("/dashboard"))
             } else {
                 toast.error(data.message || "Login failed. Please try again.")
             }
