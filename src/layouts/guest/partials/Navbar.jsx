@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import { Menu, X, Search } from "lucide-react"
+import { Menu, X, Search, BookOpen } from "lucide-react"
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
@@ -26,7 +26,8 @@ function Navbar() {
                 <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16 items-center">
                         {/* Logo */}
-                        <div className="flex items-center">
+                        <div className="flex items-center space-x-2">
+                            <BookOpen className="w-5 h-5 text-indigo-400" />
                             <span className="text-xl font-bold text-indigo-600">KitabPath</span>
                         </div>
 
