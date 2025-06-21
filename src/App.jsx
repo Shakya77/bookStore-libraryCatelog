@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Login from "./views/guest/Login";
 import NotFoundPage from "./views/404";
 import Welcome from "./views/Welcome";
-import GuestLayout from "./views/layouts/guest/GuestLayout";
+import GuestLayout from "./layouts/guest/GuestLayout";
 import Register from "./views/guest/Register";
 
 function App() {
