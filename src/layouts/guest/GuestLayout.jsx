@@ -6,8 +6,10 @@ export default function GuestLayout() {
   return (
     <>
       <Navbar />
-      <div className="">
-        <Outlet />
+      <div className="flex justify-center">
+        <div className="w-full max-w-7xl p-4 sm:px-6 lg:px-8 ">
+          <Outlet />
+        </div>
       </div>
       <Footer />
     </>

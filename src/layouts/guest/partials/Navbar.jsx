@@ -1,13 +1,16 @@
 import { useState } from "react"
 import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import { Menu, X, Search, BookOpen } from "lucide-react"
+import { Menu, X, Search, BookOpen, User } from "lucide-react"
+import { useSelector } from "react-redux"
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
+    const [isOpenProfile, setIsOpenProfile] = useState(false)
     const location = useLocation()
     const navigate = useNavigate();
-
+    const status = useSelector((state) => state.auth.isLoggedIn);
     const toggleMenu = () => setIsOpen(!isOpen)
+    const toggleProfile = () => setIsOpenProfile(!isOpenProfile)
 
     const linkClass = (path) =>
         location.pathname === path
@@ -48,7 +51,7 @@ function Navbar() {
                                 <input
                                     type="text"
                                     placeholder="Search..."
-                                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                    className="pl-9 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
                                 />
                             </div>
                             <button onClick={() => navigate("/login")}
@@ -58,14 +61,35 @@ function Navbar() {
                         </div>
 
                         {/* Mobile menu button */}
-                        <div className="md:hidden">
-                            <button
-                                onClick={toggleMenu}
-                                className="text-gray-600 hover:text-indigo-600 transition-colors p-2"
-                                aria-label="Toggle menu"
-                            >
-                                {isOpen ? <X size={24} /> : <Menu size={24} />}
-                            </button>
+                        <div className="flex md:hidden items-center">
+                            <div className="flex ">
+
+                                {
+                                    status ? (<button
+                                        onClick={toggleProfile}
+                                        className="text-gray-600 hover:text-indigo-600 transition-colors p-2"
+                                        aria-label="Toggle menu"
+                                    >
+                                        <User size={24} />
+                                    </button>
+                                    ) : (
+                                        <div className="px-4 py-3 border-t border-gray-200 space-y-3">
+                                            <button className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium">
+                                                Login
+                                            </button>
+                                        </div>
+                                    )
+                                }
+                            </div>
+                            <div className="">
+                                <button
+                                    onClick={toggleMenu}
+                                    className="text-gray-600 hover:text-indigo-600 transition-colors p-2"
+                                    aria-label="Toggle menu"
+                                >
+                                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,8 +112,6 @@ function Navbar() {
                             Contact
                         </NavLink>
                     </div>
-
-                    {/* Mobile Search and Sign In */}
                     <div className="px-4 py-3 border-t border-gray-200 space-y-3">
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -99,9 +121,6 @@ function Navbar() {
                                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             />
                         </div>
-                        <button className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium">
-                            Sign In
-                        </button>
                     </div>
                 </div>
             )}
