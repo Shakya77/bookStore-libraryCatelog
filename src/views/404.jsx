@@ -59,32 +59,6 @@ export default function NotFoundPage() {
                     </Button>
                 </div>
 
-                {/* Helpful suggestions */}
-                <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center justify-center gap-2">
-                        <Book className="w-5 h-5 text-amber-700" />
-                        What can you do instead?
-                    </h3>
-                    <ul className="text-gray-600 space-y-2 text-left max-w-md mx-auto">
-                        <li className="flex items-start gap-2">
-                            <span className="text-amber-600 mt-1">•</span>
-                            <span>Browse our featured book collections</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-amber-600 mt-1">•</span>
-                            <span>Search for books by title, author, or genre</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-amber-600 mt-1">•</span>
-                            <span>Check out our new arrivals and bestsellers</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-amber-600 mt-1">•</span>
-                            <span>Visit our reading recommendations section</span>
-                        </li>
-                    </ul>
-                </div>
-
                 {/* Footer message */}
                 <p className="text-sm text-gray-500 mt-8">
                     Need help finding something specific? Contact our librarians for assistance.

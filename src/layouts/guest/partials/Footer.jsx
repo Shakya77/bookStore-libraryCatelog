@@ -101,7 +101,7 @@ function Features() {
 function Newsletter() {
     return (
         <div className="bg-indigo-600">
-            <div className="max-w-6xl mx-auto px-4 py-6">
+            <div className="max-w-7xl mx-auto px-4 py-6">
                 <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
                     <div className="flex items-center space-x-2">
                         <Mail className="w-5 h-5" />
