@@ -1,19 +1,16 @@
-import { useEffect, useState } from "react";
-
-export default function Preloader() {
-    const [loaded, setLoaded] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setLoaded(false), 500); // hides after 500ms
-
-        return () => clearTimeout(timer); // cleanup on unmount
-    }, []);
-
-    if (!loaded) return null;
+const Preloader = ({ isVisible }) => {
+    if (!isVisible) return null;
 
     return (
-        <div className="fixed left-0 top-0 z-[999999] flex h-screen w-screen items-center justify-center bg-white ">
-            <div className="h-16 w-16 animate-spin rounded-full border-4 border-solid border-brand-500 border-t-transparent"></div>
+        <div id="page-loader" className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+            <div className="text-center">
+                {/* Spinner */}
+                <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-gray-300 border-t-blue-600 dark:border-gray-600 dark:border-t-blue-400"></div>
+                {/* Loading Text */}
+                <p className="mt-4 text-white text-lg font-medium">Loading...</p>
+            </div>
         </div>
     );
-}
+};
+
+export default Preloader;

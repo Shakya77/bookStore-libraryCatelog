@@ -6,6 +6,7 @@ import Welcome from "./views/Welcome";
 import GuestLayout from "./layouts/guest/GuestLayout";
 import Register from "./views/guest/Register";
 import AuthLayout from "./layouts/auth/AuthLayout";
+import Dashboard from "./views/auth/Dashboard";
 
 function App() {
   const status = useSelector((state) => state.auth.isLoggedIn);
@@ -16,12 +17,14 @@ function App() {
         <Route element={<GuestLayout />}>
           <Route path="/" element={<Welcome />} />
         </Route>
-        <Route element={<AuthLayout />}>
-          <Route path="/dashboard" element={<>Logged in vayo hai ta</>} />
-        </Route>
+
         {
           status ? (
-            <></>
+            <Route>
+              <Route element={<AuthLayout />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+            </Route>
           ) : (
             <Route>
               <Route path="/login" element={<Login />} />
