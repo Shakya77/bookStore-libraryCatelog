@@ -29,7 +29,7 @@ function Navbar() {
                 <div className="w-full max-w-7xl px-4">
                     <div className="flex justify-between h-16 items-center">
                         {/* Logo */}
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2 cursor-pointer" onClick={() => navigate("/")}>
                             <BookOpen className="w-5 h-5 text-indigo-400" />
                             <span className="text-xl font-bold text-indigo-600">KitabPath</span>
                         </div>
