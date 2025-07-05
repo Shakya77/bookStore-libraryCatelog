@@ -4,7 +4,6 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { login } from "../../redux/slices/AuthSlice"
 import { useNavigate } from "react-router-dom"
-import { Chrome } from 'lucide-react'
 import toast, { Toaster } from "react-hot-toast"
 import FormInput from "../../components/FormInput"
 

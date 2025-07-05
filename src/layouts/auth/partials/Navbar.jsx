@@ -10,8 +10,8 @@ const Navbar = ({
 }) => {
     // Mock user data - replace with your actual user data
     const user = {
-        name: "John Doe",
-        email: "john@example.com",
+        name: "Bijan Shakya",
+        email: "bijanshakya145@gmail.com",
     }
 
     const appName = "Admin Panel"

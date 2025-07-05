@@ -7,6 +7,7 @@ import GuestLayout from "./layouts/guest/GuestLayout";
 import Register from "./views/guest/Register";
 import AuthLayout from "./layouts/auth/AuthLayout";
 import Dashboard from "./views/auth/Dashboard";
+import Author from "./views/auth/Author";
 
 function App() {
   const status = useSelector((state) => state.auth.isLoggedIn);
@@ -17,14 +18,15 @@ function App() {
         <Route element={<GuestLayout />}>
           <Route path="/" element={<Welcome />} />
         </Route>
-
+        <Route>
+          <Route element={<AuthLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/author" element={<Author />} />
+          </Route>
+        </Route>
         {
           status ? (
-            <Route>
-              <Route element={<AuthLayout />}>
-                <Route path="/dashboard" element={<Dashboard />} />
-              </Route>
-            </Route>
+            <></>
           ) : (
             <Route>
               <Route element={<GuestLayout />}>
@@ -36,8 +38,8 @@ function App() {
           )
         }
         <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
+      </Routes >
+    </Router >
   );
 }
 
