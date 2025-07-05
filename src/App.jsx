@@ -27,9 +27,9 @@ function App() {
             </Route>
           ) : (
             <Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
               <Route element={<GuestLayout />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/about" element={<>About</>} />
               </Route>
             </Route>

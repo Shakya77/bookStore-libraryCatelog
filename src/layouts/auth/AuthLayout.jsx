@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from "react"
 import Navbar from "./partials/Navbar"
 import Sidebar from "./partials/Sidebar"
 import Preloader from "./partials/Preloader"
+import { Outlet } from "react-router-dom"
 
-const AuthLayout = ({ children, header }) => {
+const AuthLayout = ({ header }) => {
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
     const [theme, setTheme] = useState("light")
     const [isLoading, setIsLoading] = useState(false)
@@ -148,7 +149,7 @@ const AuthLayout = ({ children, header }) => {
             >
                 <div className="p-8">
                     {header && <div className="mb-8">{header}</div>}
-                    {children}
+                    <Outlet />
                 </div>
             </main>
         </div>
