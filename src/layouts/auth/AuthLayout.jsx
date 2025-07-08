@@ -4,16 +4,17 @@ import Sidebar from "./partials/Sidebar"
 import Preloader from "./partials/Preloader"
 import { Outlet } from "react-router-dom"
 
-const AuthLayout = ({ header }) => {
-    const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+const AuthLayout = () => {
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+        return localStorage.getItem("sidebarCollapsed") === "true"
+    })
+
     const [theme, setTheme] = useState("light")
     const [isLoading, setIsLoading] = useState(false)
     const [userDropdownOpen, setUserDropdownOpen] = useState(false)
     const loaderTimeoutRef = useRef(null)
 
-    // Initialize theme and sidebar state from localStorage
     useEffect(() => {
-        // Theme initialization
         const savedTheme = localStorage.getItem("theme")
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
         const initialTheme = savedTheme || (prefersDark ? "dark" : "light")
@@ -21,16 +22,14 @@ const AuthLayout = ({ header }) => {
         setTheme(initialTheme)
         if (initialTheme === "dark") {
             document.documentElement.classList.add("dark")
-        } else {
+        } else {        
             document.documentElement.classList.remove("dark")
         }
 
-        // Sidebar initialization
         const savedSidebarState = localStorage.getItem("sidebarCollapsed") === "true"
         setSidebarCollapsed(savedSidebarState)
     }, [])
 
-    // Theme toggle function
     const toggleTheme = () => {
         const newTheme = theme === "dark" ? "light" : "dark"
         setTheme(newTheme)
@@ -43,14 +42,12 @@ const AuthLayout = ({ header }) => {
         }
     }
 
-    // Sidebar toggle function
     const toggleSidebar = () => {
         const newState = !sidebarCollapsed
         setSidebarCollapsed(newState)
         localStorage.setItem("sidebarCollapsed", newState.toString())
     }
 
-    // Loading functionality
     const showLoader = () => {
         if (loaderTimeoutRef.current) {
             clearTimeout(loaderTimeoutRef.current)
@@ -59,10 +56,9 @@ const AuthLayout = ({ header }) => {
         setIsLoading(true)
         loaderTimeoutRef.current = setTimeout(() => {
             setIsLoading(false)
-        }, 2000)
+        }, 100)
     }
 
-    // Global loader function
     useEffect(() => {
         window.triggerLoader = showLoader
 
@@ -72,6 +68,10 @@ const AuthLayout = ({ header }) => {
             }
         }
     }, [])
+
+    useEffect(() => {
+        showLoader();
+    }, []);
 
     // Handle navigation clicks
     const handleNavigation = (e) => {
@@ -125,11 +125,9 @@ const AuthLayout = ({ header }) => {
     }, [])
 
     return (
-        <div
-            className="min-h-screen bg-gray-100 dark:bg-gray-900 overflow-x-hidden"
-            onClick={handleNavigation}
-            onSubmit={handleFormSubmit}
-        >
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 overflow-x-hidden" onClick={handleNavigation}
+            onSubmit={handleFormSubmit}>
+
             <Preloader isVisible={isLoading} />
 
             <Navbar
@@ -138,17 +136,12 @@ const AuthLayout = ({ header }) => {
                 theme={theme}
                 toggleTheme={toggleTheme}
                 userDropdownOpen={userDropdownOpen}
-                setUserDropdownOpen={setUserDropdownOpen}
-            />
+                setUserDropdownOpen={setUserDropdownOpen} />
 
             <Sidebar collapsed={sidebarCollapsed} />
 
-            <main
-                id="main-content"
-                className={`pt-16 min-h-screen transition-all duration-300 ${sidebarCollapsed ? "pl-20" : "pl-72"}`}
-            >
-                <div className="p-8">
-                    {header && <div className="mb-8">{header}</div>}
+            <main id="main-content" className={`pt-16 min-h-screen transition-all  duration-300 ${sidebarCollapsed ? "pl-20" : "pl-72"}`}>
+                <div className="p-8 z-50">
                     <Outlet />
                 </div>
             </main>

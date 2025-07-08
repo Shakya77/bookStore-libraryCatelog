@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react"
+import { Link, NavLink } from "react-router-dom"
 
 const Sidebar = ({ collapsed }) => {
     // Mock current route - replace with your actual routing logic
@@ -60,8 +61,8 @@ const Sidebar = ({ collapsed }) => {
 
     const SidebarLink = ({ item, collapsed }) => {
         return (
-            <a
-                href={item.href}
+            <Link
+                to={item.href}
                 className={`sidebar-link group flex items-center py-3 text-base font-medium rounded-lg relative whitespace-nowrap transition-all duration-200 ${collapsed ? "justify-start px-3" : "justify-start px-4"
                     } ${item.current
                         ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/50"
@@ -77,14 +78,14 @@ const Sidebar = ({ collapsed }) => {
                         {item.name}
                     </div>
                 )}
-            </a>
+            </Link>
         )
     }
 
     return (
         <div
             id="sidebar"
-            className={`fixed inset-y-0 left-0 z-20 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out pt-16 overflow-hidden ${collapsed ? "w-20" : "w-72"
+            className={`lg:fixed absolute inset-y-0 left-0 z-20 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out pt-16 overflow-hidden ${collapsed ? "w-20" : "w-72"
                 }`}
         >
             <div className="flex flex-col h-full">

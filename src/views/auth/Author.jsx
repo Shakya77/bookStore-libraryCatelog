@@ -12,6 +12,10 @@ const Author = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingAuthor, setEditingAuthor] = useState(null);
 
+    useEffect(() => {
+        document.title = "Author";
+    }, []);
+
     const columns = [
         {
             name: "ID",

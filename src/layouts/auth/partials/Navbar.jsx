@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react"
+import { Link } from "react-router-dom"
 
 const Navbar = ({
     sidebarCollapsed,
@@ -29,7 +30,7 @@ const Navbar = ({
     }
 
     return (
-        <nav className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm fixed top-0 left-0 right-0 z-30">
+        <nav className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-sm fixed top-0 left-0 right-0 z-30 w-">
             <div className="px-6 lg:px-8">
                 <div className="flex justify-between h-16">
                     <div className="flex items-center">
@@ -42,13 +43,13 @@ const Navbar = ({
                         </button>
 
                         {/* Logo */}
-                        <div className="flex items-center">
-                            <a href="/dashboard" className="flex items-center">
+                        <div className="flex items-center outline-none">
+                            <Link to="/dashboard" className="flex items-center focus:outline-none focus-visible:outline-none">
                                 <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center">
                                     <span className="text-white font-bold text-xl">{appName.charAt(0)}</span>
                                 </div>
                                 <span className="ml-3 text-xl font-semibold text-gray-800 dark:text-gray-200">{appName}</span>
-                            </a>
+                            </Link>
                         </div>
                     </div>
 

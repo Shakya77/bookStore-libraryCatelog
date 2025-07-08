@@ -1,4 +1,11 @@
+import { useEffect } from "react";
+
 const Dashboard = () => {
+
+    useEffect(() => {
+        document.title = "Dashboard";
+    }, []);
+
     const header = (
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
