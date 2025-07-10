@@ -53,3 +53,49 @@ a:focus {
 .animate-spin {
     animation: spin 1s linear infinite;
 }
+
+@layer utilities {
+    .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+/* Page Carousel Styles */
+.page-carousel {
+    width: 100%;
+    height: 100vh;
+}
+
+.page-carousel .swiper-pagination {
+    bottom: 60px !important;
+}
+
+.page-carousel .swiper-pagination-bullet {
+    transition: all 0.3s ease !important;
+}
+
+.page-carousel .swiper-slide {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Smooth fade transitions */
+.page-carousel .swiper-slide-active {
+    opacity: 1 !important;
+}
+
+.page-carousel .swiper-slide-next,
+.page-carousel .swiper-slide-prev {
+    opacity: 0 !important;
+}
