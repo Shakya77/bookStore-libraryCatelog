@@ -1,184 +1,166 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import DataTable from "react-data-table-component";
-import { Icon } from "@iconify/react";
-import toast from "react-hot-toast";
-import AuthorModal from "../modals/AuthorModal";
+import { useEffect, useState } from "react"
+import DataTable from "react-data-table-component"
+import { Icon } from "@iconify/react"
+import toast from "react-hot-toast"
+import AuthorModal from "../modals/AuthorModal"
 
 const Author = () => {
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editingAuthor, setEditingAuthor] = useState(null);
+    const [authors, setAuthors] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [editingAuthor, setEditingAuthor] = useState(null)
 
     useEffect(() => {
-        document.title = "Author";
-    }, []);
+        document.title = "Author"
+    }, [])
 
     const columns = [
         {
             name: "ID",
             selector: (row) => row.id,
-            sortable: true,
-            width: "80px",
+            center: true,
+            width: "60px",
         },
         {
             name: "Name",
             selector: (row) => row.name,
-            sortable: true,
+            width: "300px",
         },
         {
-            name: "Email",
-            selector: (row) => row.email,
-            sortable: true,
+            name: "Birthday",
+            center: true,
+            selector: (row) => row.birthday,
+            width: "200px",
         },
         {
-            name: "Phone",
-            selector: (row) => row.phone,
-            sortable: true,
-        },
-        {
-            name: "Company",
-            selector: (row) => row.company?.name || "N/A",
-            sortable: true,
+            name: "Bio",
+            selector: (row) => row.bio,
         },
         {
             name: "Actions",
             cell: (row) => (
-                <div className="flex space-x-2">
+                <div className="flex space-x-1 sm:space-x-2">
                     <button
                         onClick={() => handleEdit(row)}
                         className="text-blue-500 hover:text-blue-700 p-1 hover:bg-blue-50 rounded transition-colors"
                         title="Edit"
                     >
-                        <Icon icon="tabler:edit" width="18" />
+                        <Icon icon="tabler:edit" width="16" className="sm:w-[18px]" />
                     </button>
                     <button
-                        onClick={() => handleDelete(row.id)}
+                        onClick={() => alert("Delete")}
                         className="text-red-500 hover:text-red-700 p-1 hover:bg-red-50 rounded transition-colors"
                         title="Delete"
                     >
-                        <Icon icon="tabler:trash" width="18" />
+                        <Icon icon="tabler:trash" width="16" className="sm:w-[18px]" />
                     </button>
                 </div>
             ),
             ignoreRowClick: true,
-            width: "120px",
+            center: true,
         },
-    ];
+    ]
 
     useEffect(() => {
-        const fetchData = async () => {
-            toast.loading("Loading authors...", { id: "loading-authors" });
-
+        const fetchAuthors = async () => {
+            toast.loading("Loading authors...", { id: "loading-authors" })
             try {
-                const res = await fetch("https://jsonplaceholder.typicode.com/users");
-
-                if (!res.ok) throw new Error("Failed to fetch");
-
-                const data = await res.json();
-                setUsers(data);
-
-                toast.success(`Loaded ${data.length} authors`, {
+                const res = await fetch("http://127.0.0.1:8000/api/author/getAll")
+                if (!res.ok) throw new Error("Failed to fetch")
+                const data = await res.json()
+                setAuthors(data.data)
+                toast.success(`Loaded ${data.data.length} authors`, {
                     id: "loading-authors",
-                });
+                })
             } catch (error) {
                 toast.error("Failed to load authors", {
                     id: "loading-authors",
-                });
-                console.error(error);
+                })
+                console.error(error)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
-        };
-
-        fetchData();
-    }, []);
+        }
+        fetchAuthors()
+    }, [])
 
     const handleAddAuthor = () => {
-        setEditingAuthor(null);
-        setIsModalOpen(true);
-    };
+        setEditingAuthor(null)
+        setIsModalOpen(true)
+    }
 
     const handleEdit = (author) => {
-        console.log(author);
-        setEditingAuthor(author);
-        setIsModalOpen(true);
-        toast.success(`Editing ${author.name}`);
-    };
-
-    const handleDelete = async (id) => {
-        const author = users.find((u) => u.id === id);
-        if (window.confirm(`Delete "${author?.name}"?`)) {
-            toast.loading("Deleting...", { id: `delete-${id}` });
-
-            await new Promise((r) => setTimeout(r, 1000));
-
-            setUsers(users.filter((u) => u.id !== id));
-            toast.success(`Deleted "${author?.name}"`, {
-                id: `delete-${id}`,
-            });
-        }
-    };
+        setEditingAuthor(author)
+        setIsModalOpen(true)
+    }
 
     const handleModalSubmit = (formData) => {
-        if (editingAuthor) {
-            setUsers(users.map((u) => (u.id === editingAuthor.id ? { ...u, ...formData } : u)));
-        } else {
-            const newAuthor = {
-                id: Math.max(...users.map((u) => u.id)) + 1,
-                ...formData,
-                company: { name: formData.company },
-            };
-            setUsers([...users, newAuthor]);
-        }
-        setIsModalOpen(false);
-        setEditingAuthor(null);
-    };
+        // Handle form submission logic here
+        console.log("Form data:", formData)
+        setIsModalOpen(false)
+        setEditingAuthor(null)
+    }
 
     const handleModalClose = () => {
-        setIsModalOpen(false);
-        setEditingAuthor(null);
-    };
+        setIsModalOpen(false)
+        setEditingAuthor(null)
+    }
 
     return (
         <div className="p-4 bg-white rounded shadow">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
                 <h2 className="text-xl font-semibold">Author List</h2>
                 <button
                     onClick={handleAddAuthor}
-                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition"
+                    className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition w-full sm:w-auto justify-center sm:justify-start"
                 >
                     <Icon icon="tabler:plus" width="18" />
                     <span>Add Author</span>
                 </button>
             </div>
 
-            <DataTable
-                columns={columns}
-                data={users}
-                progressPending={loading}
-                pagination
-                highlightOnHover
-                striped
-                responsive
-                persistTableHead
-                customStyles={{
-                    headRow: {
-                        style: {
-                            backgroundColor: "#f8f9fa",
-                            fontWeight: "bold",
+            <div className="overflow-x-auto">
+                <DataTable
+                    columns={columns}
+                    data={authors}
+                    progressPending={loading}
+                    pagination
+                    highlightOnHover
+                    striped
+                    responsive
+                    persistTableHead
+                    dense={window.innerWidth < 768} // Make table more compact on mobile
+                    customStyles={{
+                        headRow: {
+                            style: {
+                                backgroundColor: "#f8f9fa",
+                                fontWeight: "bold",
+                                fontSize: "14px",
+                            },
                         },
-                    },
-                }}
-                noDataComponent={
-                    <div className="text-center py-8">
-                        <Icon icon="tabler:users" width="48" className="text-gray-400 mx-auto mb-2" />
-                        <p className="text-gray-500">No authors found</p>
-                    </div>
-                }
-            />
+                        rows: {
+                            style: {
+                                fontSize: "13px",
+                                minHeight: "48px",
+                            },
+                        },
+                        cells: {
+                            style: {
+                                paddingLeft: "8px",
+                                paddingRight: "8px",
+                            },
+                        },
+                    }}
+                    noDataComponent={
+                        <div className="text-center py-8">
+                            <Icon icon="tabler:users" width="48" className="text-gray-400 mx-auto mb-2" />
+                            <p className="text-gray-500">No authors found</p>
+                        </div>
+                    }
+                />
+            </div>
 
             <AuthorModal
                 isOpen={isModalOpen}
@@ -187,7 +169,7 @@ const Author = () => {
                 author={editingAuthor}
             />
         </div>
-    );
-};
+    )
+}
 
-export default Author;
+export default Author
