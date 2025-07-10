@@ -15,6 +15,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="*" element={<NotFoundPage />} />
         <Route element={<GuestLayout />}>
           <Route path="/" element={<Welcome />} />
         </Route>
@@ -37,7 +38,6 @@ function App() {
             </Route>
           )
         }
-        <Route path="*" element={<NotFoundPage />} />
       </Routes >
     </Router >
   );

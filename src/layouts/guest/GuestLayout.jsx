@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./partials/Footer";
 import Navbar from "./partials/Navbar";
+import { SubmenuBar } from "../../views/guest/partials/SubmenuBar";
 
 export default function GuestLayout() {
   return (

@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { SubmenuBar } from "../../../views/guest/partials/SubmenuBar"
 
 export default function Navbar() {
     const [isDark, setIsDark] = useState(false)
@@ -39,26 +40,21 @@ export default function Navbar() {
     }
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-white/90  backdrop-blur-sm border-b border-gray-200 shadow-sm">
+        <header className="bg-white/90  backdrop-blur-sm border-b border-gray-200 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo/Brand */}
                     <div className="flex-shrink-0">
-                        <button
-                            onClick={() => handleNavigation("/")}
-                            className="text-xl font-bold text-gray-900  hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                        >
+                        <button onClick={() => handleNavigation("/")}
+                            className="text-xl font-bold text-gray-900  hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                             KitabNagar
                         </button>
                     </div>
 
                     <div className="flex items-center space-x-4">
                         {/* Theme Toggle */}
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-lg bg-gray-100  hover:bg-gray-200  transition-colors"
-                            aria-label="Toggle theme"
-                        >
+                        <button onClick={toggleTheme} className="p-2 rounded-lg bg-gray-100  hover:bg-gray-200  transition-colors"
+                            aria-label="Toggle theme">
                             {isDark ? (
                                 <Icon icon="tabler:moon-filled" width="18" className="text-gray-600 dark:text-gray-300" />
                             ) : (
@@ -67,29 +63,24 @@ export default function Navbar() {
                         </button>
 
                         {/* Authentication Navigation */}
-                        <button
-                            onClick={() => handleNavigation('/dashboard')}
-                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                        >
+                        <button onClick={() => handleNavigation('/dashboard')}
+                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                             Dashboard
                         </button>
                         <>
-                            <button
-                                onClick={() => handleNavigation('/login')}
-                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                            >
+                            <button onClick={() => handleNavigation('/login')}
+                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                 Log in
                             </button>
-                            <button
-                                onClick={() => handleNavigation('/register')}
-                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                            >
+                            <button onClick={() => handleNavigation('/register')}
+                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                 Register
                             </button>
                         </>
                     </div>
                 </div>
+                <SubmenuBar />
             </div>
-        </header>
+        </header >
     )
 }
