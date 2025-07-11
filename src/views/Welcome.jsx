@@ -171,7 +171,7 @@ export default function Welcome() {
     }
 
     return (
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10 z-0">
             <Carousel />
             <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-6">
                 {sampleBooks.map((book) => (

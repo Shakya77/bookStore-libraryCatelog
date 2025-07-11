@@ -1,8 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
 
 const AuthorModal = ({ isOpen, onClose, onSubmit, author }) => {
     const [formData, setFormData] = useState({
@@ -168,29 +166,6 @@ const AuthorModal = ({ isOpen, onClose, onSubmit, author }) => {
                             placeholder="Enter author's full name"
                             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 placeholder-gray-400"
                         />
-                    </div>
-
-                    {/* Birthday Field with React DatePicker */}
-                    <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-gray-700" htmlFor="birthday">
-                            Birthday
-                        </label>
-                        <DatePicker
-                            selected={formData.birthday}
-                            onChange={handleDateChange}
-                            dateFormat="MMMM d, yyyy"
-                            placeholderText="Select birthday"
-                            showYearDropdown
-                            showMonthDropdown
-                            dropdownMode="select"
-                            maxDate={new Date()}
-                            yearDropdownItemNumber={100}
-                            scrollableYearDropdown
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 placeholder-gray-400"
-                            wrapperClassName="w-full"
-                            calendarClassName="shadow-lg border-0"
-                        />
-                        <p className="text-xs text-gray-500">Select the author's date of birth</p>
                     </div>
 
                     {/* Bio Field */}

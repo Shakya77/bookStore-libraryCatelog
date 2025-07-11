@@ -73,7 +73,7 @@ export function SubmenuBar() {
                         </button>
 
                         {activeDropdown === category.name && (
-                            <div className="absolute top-full left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+                            <div className="mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg absolute z-50">
                                 <div className="py-1">
                                     {category.subcategories.map((subcategory, index) => (
                                         <div key={subcategory}>
