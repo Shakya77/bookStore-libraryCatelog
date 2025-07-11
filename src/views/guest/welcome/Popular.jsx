@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import { BookCard } from "../components/BookCard";
-import Carousel from "./guest/welcome/Carousel";
-import Popular from "./guest/welcome/Popular";
-import FeaturedAuthors from "./guest/welcome/FeaturedAuthors";
+import { Icon } from "@iconify/react/dist/iconify.js"
+import { BookCard } from "../../../components/BookCard"
 
 const sampleBooks = [
     {
@@ -154,34 +151,69 @@ const sampleBooks = [
         language: "English",
         format: ["Hardcover", "Paperback", "eBook", "Audiobook"],
     },
+    {
+        id: "9",
+        title: "The Psychology of Money",
+        author: "Morgan Housel",
+        price: 16.99,
+        rating: 4.6,
+        reviewCount: 3421,
+        image: "/placeholder.svg?height=200&width=150",
+        category: "Finance",
+        description:
+            "Timeless lessons on wealth, greed, and happiness. The Psychology of Money provides 19 short stories exploring the strange ways people think about money and teaches you how to make better sense of one of life's most important topics.",
+        pages: 256,
+        publisher: "Harriman House",
+        publishDate: "September 8, 2020",
+        isbn: "978-0857197689",
+        language: "English",
+        format: ["Hardcover", "Paperback", "eBook", "Audiobook"],
+    },
+    {
+        id: "10",
+        title: "Becoming",
+        author: "Michelle Obama",
+        price: 19.99,
+        originalPrice: 24.99,
+        rating: 4.8,
+        reviewCount: 8765,
+        image: "/placeholder.svg?height=200&width=150",
+        category: "Biography",
+        description:
+            "An intimate, powerful, and inspiring memoir by the former First Lady of the United States. In her memoir, a work of deep reflection and mesmerizing storytelling, Michelle Obama invites readers into her world, chronicling the experiences that have shaped her.",
+        pages: 448,
+        publisher: "Crown Publishing",
+        publishDate: "November 13, 2018",
+        isbn: "978-1524763138",
+        language: "English",
+        format: ["Hardcover", "Paperback", "eBook", "Audiobook"],
+    },
 ]
 
-export default function Welcome() {
-    useEffect(() => {
-        document.title = "Welcome";
-    }, []);
 
-    const [currentView, setCurrentView] = useState();
-    const [selectedBook, setSelectedBook] = useState();
-
-    const handleViewProduct = (bookId) => {
-        const book = sampleBooks.find((b) => b.id === bookId)
-        if (book) {
-            setSelectedBook(book)
-            setCurrentView("product")
-        }
-    }
-
+function Popular() {
     return (
-        <div className="flex flex-col gap-10 z-0">
-            <Carousel />
-            <Popular />
-            <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-6">
+        <section>
+            <div className="flex items-center justify-between mb-8">
+                <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Popular Books</h3>
+                    <p className="text-gray-600">Most loved books by our readers</p>
+                </div>
+                <button
+                    className="text-blue-600 hover:text-blue-700 font-medium text-sm flex items-center space-x-1"
+                >
+                    <span>View All</span>
+                    <Icon icon="mdi:arrow-right" className="w-4 h-4" />
+                </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {sampleBooks.map((book) => (
-                    <BookCard key={book.id} {...book} onViewProduct={handleViewProduct} />
+                    <BookCard key={book.id} {...book} onViewProduct={""} />
                 ))}
             </div>
-            <FeaturedAuthors />
-        </div>
+        </section>
     )
 }
+
+export default Popular
