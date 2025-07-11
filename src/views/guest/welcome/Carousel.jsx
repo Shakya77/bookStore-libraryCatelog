@@ -59,7 +59,7 @@ export default function Carousel() {
                     bulletActiveClass: "swiper-pagination-bullet-active bg-blue-600",
                 }}
                 autoplay={{
-                    delay: 4000,
+                    delay: 2000,
                     disableOnInteraction: false,
                 }}
                 loop={true}

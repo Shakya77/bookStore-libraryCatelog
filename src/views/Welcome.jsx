@@ -3,6 +3,7 @@ import { BookCard } from "../components/BookCard";
 import Carousel from "./guest/welcome/Carousel";
 import Popular from "./guest/welcome/Popular";
 import FeaturedAuthors from "./guest/welcome/FeaturedAuthors";
+import { CategorySwiper } from "./guest/partials/CategorySwiper";
 
 const sampleBooks = [
     {
@@ -175,6 +176,7 @@ export default function Welcome() {
     return (
         <div className="flex flex-col gap-10 z-0">
             <Carousel />
+            <CategorySwiper />
             <Popular />
             <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-6">
                 {sampleBooks.map((book) => (
