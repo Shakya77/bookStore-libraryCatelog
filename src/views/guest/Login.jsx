@@ -100,31 +100,6 @@ export default function Login() {
 
     return (
         <>
-            <Toaster
-                position="top-right"
-                toastOptions={{
-                    duration: 4000,
-                    style: {
-                        background: '#363636',
-                        color: '#fff',
-                    },
-                    success: {
-                        duration: 3000,
-                        iconTheme: {
-                            primary: '#4ade80',
-                            secondary: '#fff',
-                        },
-                    },
-                    error: {
-                        duration: 4000,
-                        iconTheme: {
-                            primary: '#ef4444',
-                            secondary: '#fff',
-                        },
-                    },
-                }}
-            />
-
             <div className="min-h-screen flex items-center justify-center p-4">
                 <div className="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-xl w-full grid grid-cols-1 lg:grid-cols-1">
                     {/* Left Side - Login Form */}

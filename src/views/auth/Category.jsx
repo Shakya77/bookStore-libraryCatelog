@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import DataTable from "react-data-table-component"
 import { Icon } from "@iconify/react"
-import toast, { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
 import AuthorModal from "../modals/AuthorModal"
 import DeleteModal from "../modals/DeleteModal"
+import CategoryModal from "../modals/CategoryModal"
 
-const Author = () => {
+export default function Category() {
     const [authors, setAuthors] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -211,17 +212,19 @@ const Author = () => {
 
     return (
         <div className="p-4 bg-white rounded shadow">
+
+
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
-                <h2 className="text-xl font-semibold">Author List</h2>
+                <h2 className="text-xl font-semibold">Category List</h2>
 
                 <div className="flex items-center gap-5">
-                    <input type="text" placeholder="Search by name"
+                    <input type="text" placeholder="Search by category name"
                         value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
                         className="px-4 py-2 border rounded" />
                     <button onClick={handleAddAuthor}
                         className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition w-full sm:w-auto justify-center sm:justify-start">
                         <Icon icon="tabler:plus" width="18" />
-                        <span>Add Author</span>
+                        <span>Add Category</span>
                     </button>
                 </div>
             </div>
@@ -267,7 +270,7 @@ const Author = () => {
                 />
             </div>
 
-            <AuthorModal
+            <CategoryModal
                 key={editingAuthor ? `edit-${editingAuthor.id}` : `add-${Date.now()}`} // Force remount
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
@@ -286,5 +289,3 @@ const Author = () => {
         </div>
     )
 }
-
-export default Author

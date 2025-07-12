@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
-import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css" // Keep react-datepicker CSS for calendar styling
 import { Icon } from "@iconify/react" // Using Iconify for icons
 
-const AuthorModal = ({ isOpen, onClose, onSubmit, author }) => {
+const CategoryModal = ({ isOpen, onClose, onSubmit, author }) => {
     const [formData, setFormData] = useState({
         name: "",
         birthday: null,
@@ -38,10 +37,6 @@ const AuthorModal = ({ isOpen, onClose, onSubmit, author }) => {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
-    }
-
-    const handleDateChange = (date) => {
-        setFormData({ ...formData, birthday: date })
     }
 
     const handleFileChange = (e) => {
@@ -147,23 +142,6 @@ const AuthorModal = ({ isOpen, onClose, onSubmit, author }) => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-gray-700">Date of Birth</label>
-                        <div className="relative">
-                            <DatePicker
-                                selected={formData.birthday}
-                                onChange={handleDateChange}
-                                dateFormat="yyyy-MM-dd"
-                                placeholderText="Select a date"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 placeholder-gray-400 pr-10" // Added pr-10 for icon space
-                                wrapperClassName="w-full" // Ensure the wrapper takes full width
-                            />
-                            <Icon
-                                icon="mdi:calendar"
-                                className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
-                            />
-                        </div>
-                    </div>
-                    <div className="space-y-2">
                         <label className="block text-sm font-semibold text-gray-700" htmlFor="bio">
                             Biography
                         </label>
@@ -200,4 +178,4 @@ const AuthorModal = ({ isOpen, onClose, onSubmit, author }) => {
     )
 }
 
-export default AuthorModal
+export default CategoryModal
