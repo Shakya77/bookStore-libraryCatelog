@@ -5,7 +5,7 @@ import BooksHoverMenu from "./BooksHoverMenu";
 
 
 export function SubmenuBar() {
-    const [isBooksHovered, setIsBooksHovered] = useState(true)
+    const [isBooksHovered, setIsBooksHovered] = useState(false)
 
     return (
         <>

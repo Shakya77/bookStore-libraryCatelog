@@ -82,17 +82,18 @@ export default function BooksHoverMenu() {
     }
 
     return (
-        <div className="absolute left-0 right-0 top-full bg-white shadow-lg rounded-b-lg z-[100] py-6 px-8 ">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="absolute left-0 right-0 top-full py-2 z-[100] px-8">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 bg-white shadow-lg rounded-b-lg">
                 <div className="col-span-1 max-h-[500px] overflow-y-scroll pr-4">
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 text-left bg-slate-200">
                         {categories.map((category) => (
                             <li key={category.name}>
                                 <button
                                     onClick={() => handleCategoryClick(category.name)}
-                                    className="flex items-center justify-between w-full text-gray-700 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md focus:outline-none"
+                                    className={`flex text-left items-center justify-between w-full px-3 py-2 focus:outline-none text-gray-700 hover:font-bold ${openCategory === category.name ? 'font-bold' : ''
+                                        }`}
                                 >
-                                    {category.name}{" "}
+                                    {category.name}
                                     {category.subcategories &&
                                         (openCategory === category.name ? (
                                             <Icon icon="lucide:chevron-up" className="h-4 w-4 text-gray-400" />
@@ -104,7 +105,7 @@ export default function BooksHoverMenu() {
                                     <ul className="ml-4 mt-1 space-y-1">
                                         {category.subcategories.map((subcat) => (
                                             <li key={subcat}>
-                                                <button className="block w-full text-left text-gray-600 hover:text-gray-800 hover:bg-gray-50 px-2 py-1 rounded-md text-sm focus:outline-none">
+                                                <button className="block w-full text-left text-gray-600 hover:text-gray-800 hover:bg-gray-50 px-2 py-1 border-l-4 text-sm focus:outline-none">
                                                     {subcat}
                                                 </button>
                                             </li>
