@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Fiction",
+    "subcategories": [
+      "Literary Fiction",
+      "Mystery & Thriller",
+      "Romance",
+      "Science Fiction",
+      "Fantasy",
+      "Historical Fiction",
+      "Horror"
+    ]
+  },
+  {
+    "name": "Non-Fiction",
+    "subcategories": [
+      "Biography & Memoir",
+      "History",
+      "Science & Nature",
+      "Self-Help",
+      "Business",
+      "Health & Fitness",
+      "Travel"
+    ]
+  },
+  {
+    "name": "Academic",
+    "subcategories": [
+      "Textbooks",
+      "Reference",
+      "Research",
+      "Professional",
+      "Study Guides"
+    ]
+  },
+  {
+    "name": "Children's",
+    "subcategories": [
+      "Picture Books",
+      "Early Readers",
+      "Middle Grade",
+      "Young Adult",
+      "Educational"
+    ]
+  },
+  {
+    "name": "Genres",
+    "subcategories": [
+      "Poetry",
+      "Drama",
+      "Essays",
+      "Comics & Graphic Novels",
+      "Art & Design"
+    ]
+  }
+]
