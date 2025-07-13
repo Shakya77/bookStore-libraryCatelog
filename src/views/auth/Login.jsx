@@ -84,11 +84,33 @@ export default function Login() {
             if (response.ok) {
                 console.log("Login success:", data)
                 localStorage.setItem("token", data.token)
-                localStorage.setItem("role", data.role)
-                localStorage.setItem("user", JSON.stringify(data.user))
-                dispatch(login(true))
-                toast.success("Login successful!")
-                setTimeout(() => navigate("/dashboard"))
+                try {
+                    const responseData = await fetch(`${import.meta.env.VITE_API_URL}/getinfo`, {
+                        method: "GET",
+                        headers: {
+                            "Authorization": `${localStorage.getItem("token")}`,
+                            "Content-Type": "application/json",
+                        },
+                    })
+
+                    const userData = await responseData.json();
+                    console.log("User Data:", userData.user)
+
+                    if (responseData.ok) {
+                        localStorage.setItem("user", JSON.stringify(userData.user))
+                        localStorage.setItem("role", JSON.stringify(userData.user.role))
+                        if (userData.user.role === "admin") {
+                            navigate("/admin")
+                        } else {
+                            navigate("/user")
+                        }
+                    }
+                } catch (error) {
+                    console.error("Network error:", error.message)
+                    toast.error("Network error. Please check your connection.")
+                } finally {
+                    setIsLoading(false)
+                }
             } else {
                 toast.error(data.message || "Login failed. Please try again.")
             }

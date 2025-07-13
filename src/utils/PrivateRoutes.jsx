@@ -5,7 +5,7 @@ export default function PrivateRoutes({ role }) {
 
     if (!user) return <Navigate to="/login" />;
 
-    if (role && user.type !== role) return <Navigate to={`/dashboard`} />;
+    if (role && user.role !== role) return <Navigate to={`/${role}`} />;
 
     return <Outlet />;
 }
