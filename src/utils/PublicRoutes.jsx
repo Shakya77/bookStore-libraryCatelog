@@ -1,11 +1,13 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-export default function PublicRoutes({ role }) {
+const PublicRoute = () => {
     const user = JSON.parse(localStorage.getItem('user'));
 
-    if (!user) return <Navigate to="/login" />;
-
-    if (role && user.type !== role) return <Navigate to={`/${user.type}`} />;
+    if (user) {
+        return <Navigate to={`/${user.role}`} />;
+    }
 
     return <Outlet />;
-}
+};
+
+export default PublicRoute;

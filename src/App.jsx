@@ -11,6 +11,10 @@ import Category from "./views/admin/Category";
 import { Toaster } from "react-hot-toast";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import Profile from "./views/user/Profile";
+import BookRead from "./views/user/BookRead";
+import Settings from "./views/user/Settings";
+import Wishlist from "./views/user/Wishlist";
+import PublicRoute from "./utils/PublicRoutes";
 
 function App() {
   return (
@@ -23,7 +27,7 @@ function App() {
           <Route element={<GuestLayout />}>
             <Route path="/" element={<Welcome />} />
             <Route path="/about" element={<>About</>} />
-            <Route path="/profile" element={<Profile />} />
+
           </Route>
 
           <Route element={<PrivateRoutes role="admin" />}>
@@ -36,11 +40,14 @@ function App() {
 
           <Route element={<PrivateRoutes role="user" />}>
             <Route element={<GuestLayout />}>
-              <Route path="/user" element={<Dashboard />} />
+              <Route path="/user" element={<Profile />} />
+              <Route path="/user/author" element={<BookRead />} />
+              <Route path="/user/category" element={<Wishlist />} />
+              <Route path="/user/settings" element={<Settings />} />
             </Route>
           </Route>
 
-          <Route>
+          <Route element={<PublicRoute />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
