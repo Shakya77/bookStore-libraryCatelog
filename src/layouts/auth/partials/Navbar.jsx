@@ -71,25 +71,17 @@ const Navbar = ({
 
                         {/* User Dropdown */}
                         <div className="relative">
-                            <button
-                                id="user-dropdown-toggle"
+                            <button id="user-dropdown-toggle"
                                 onClick={(e) => {
                                     e.stopPropagation()
                                     setUserDropdownOpen(!userDropdownOpen)
                                 }}
-                                className="flex items-center px-4 py-2 text-sm font-medium rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                            >
-                                <img
-                                    className="w-8 h-8 rounded-full mr-3"
+                                className="flex items-center px-4 py-2 text-sm font-medium rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                                <img className="w-8 h-8 rounded-full mr-3"
                                     src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=3b82f6&color=fff`}
-                                    alt="User Avatar"
-                                />
+                                    alt="User Avatar" />
                                 <span className="hidden md:block text-base">{user.name}</span>
-                                <Icon
-                                    icon="tabler:chevron-down"
-                                    width={18}
-                                    className={`ml-2 transition-transform duration-200 ${userDropdownOpen ? "rotate-180" : ""}`}
-                                />
+                                <Icon icon="tabler:chevron-down" width={18} className={`ml-2 transition-transform duration-200 ${userDropdownOpen ? "rotate-180" : ""}`} />
                             </button>
 
                             {/* Dropdown Menu */}
@@ -103,28 +95,22 @@ const Navbar = ({
                                         <p className="text-sm text-gray-500 dark:text-gray-400">{user.email}</p>
                                     </div>
 
-                                    <a
-                                        href="/profile"
-                                        className="flex items-center px-4 py-3 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                    >
-                                        <Icon icon="tabler:user" width={18} className="mr-3" />
-                                        Profile
-                                    </a>
+                                    <Link to="/"
+                                        className="flex items-center px-4 py-3 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <Icon icon="tabler:settings" width={18} className="mr-3" />
+                                        Return To Welcome
+                                    </Link>
 
-                                    <a
-                                        href="/settings"
-                                        className="flex items-center px-4 py-3 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                    >
+                                    <Link to="/settings"
+                                        className="flex items-center px-4 py-3 text-base text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                                         <Icon icon="tabler:settings" width={18} className="mr-3" />
                                         Settings
-                                    </a>
+                                    </Link>
 
                                     <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
 
-                                    <button
-                                        onClick={handleLogout}
-                                        className="flex items-center w-full px-4 py-3 text-base text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
-                                    >
+                                    <button onClick={handleLogout}
+                                        className="flex items-center w-full px-4 py-3 text-base text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20">
                                         <Icon icon="tabler:logout" width={18} className="mr-3" />
                                         Log Out
                                     </button>

@@ -159,7 +159,7 @@ const sampleBooks = [
 
 export default function Welcome() {
     useEffect(() => {
-        document.title = "Welcome";
+        document.title = "BOOK STORE / LIBRARY CATALOG - Welcome";
     }, []);
 
     const [currentView, setCurrentView] = useState();

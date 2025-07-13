@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import DataTable from "react-data-table-component"
 import { Icon } from "@iconify/react"
-import toast, { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
 import AuthorModal from "../modals/AuthorModal"
 import DeleteModal from "../modals/DeleteModal"
 
@@ -85,7 +85,7 @@ const Author = () => {
 
         toast.loading(`Deleting author ${authorToDelete.name}...`, { id: "deleting-author" })
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/${authorToDelete.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/author/${authorToDelete.id}`, {
                 method: "DELETE",
                 headers: {
                     Accept: "application/json",
@@ -115,15 +115,11 @@ const Author = () => {
     }
 
     const fetchAuthors = async () => {
-        toast.loading("Loading authors...", { id: "loading-authors" })
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/author/getAll`)
             if (!res.ok) throw new Error("Failed to fetch")
             const data = await res.json()
             setAuthors(data.data)
-            toast.success(`Loaded ${data.data.length} authors`, {
-                id: "loading-authors",
-            })
         } catch (error) {
             toast.error("Failed to load authors", {
                 id: "loading-authors",

@@ -10,7 +10,7 @@ import FormInput from "../../components/FormInput"
 export default function Login() {
     const [formData, setFormData] = useState({
         email: "admin@gmail.com",
-        password: "admin123",
+        password: "password",
     })
     const [isLoading, setIsLoading] = useState(false)
     const [fieldErrors, setFieldErrors] = useState({})
@@ -68,7 +68,7 @@ export default function Login() {
         setFieldErrors({})
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/api/login", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -84,8 +84,10 @@ export default function Login() {
             if (response.ok) {
                 console.log("Login success:", data)
                 localStorage.setItem("token", data.token)
+                localStorage.setItem("role", data.role)
+                localStorage.setItem("user", JSON.stringify(data.user))
                 dispatch(login(true))
-                toast.success("Login successful! Redirecting...")
+                toast.success("Login successful!")
                 setTimeout(() => navigate("/dashboard"))
             } else {
                 toast.error(data.message || "Login failed. Please try again.")
