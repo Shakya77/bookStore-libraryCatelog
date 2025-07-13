@@ -20,7 +20,7 @@ export default function Category() {
     const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-        document.title = "Author"
+        document.title = "Category"
     }, [])
 
     const columns = [
@@ -275,7 +275,7 @@ export default function Category() {
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
                 onSubmit={handleModalSubmit}
-                author={editingAuthor}
+                category={editingAuthor}
             />
 
             {showDeleteConfirm && (
