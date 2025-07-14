@@ -8,6 +8,7 @@ const Navbar = ({
     toggleTheme,
     userDropdownOpen,
     setUserDropdownOpen,
+    logout,
 }) => {
     // Mock user data - replace with your actual user data
     const user = {
@@ -16,18 +17,6 @@ const Navbar = ({
     }
 
     const appName = "Admin Panel"
-
-    const handleLogout = () => {
-        if (window.confirm("Are you sure you want to log out?")) {
-            // Show loader and navigate
-            if (window.triggerLoader) {
-                window.triggerLoader()
-            }
-            setTimeout(() => {
-                window.location.href = "/logout"
-            }, 100)
-        }
-    }
 
     return (
         <nav className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-sm fixed top-0 left-0 right-0 z-30 w-">
@@ -86,10 +75,8 @@ const Navbar = ({
 
                             {/* Dropdown Menu */}
                             {userDropdownOpen && (
-                                <div
-                                    id="user-dropdown-menu"
-                                    className="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-50 border border-gray-200 dark:border-gray-700"
-                                >
+                                <div id="user-dropdown-menu"
+                                    className="absolute right-0 mt-2 w-52 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 z-50 border border-gray-200 dark:border-gray-700">
                                     <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                                         <p className="text-base font-medium text-gray-800 dark:text-gray-200">{user.name}</p>
                                         <p className="text-sm text-gray-500 dark:text-gray-400">{user.email}</p>
@@ -109,7 +96,7 @@ const Navbar = ({
 
                                     <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
 
-                                    <button onClick={handleLogout}
+                                    <button onClick={logout}
                                         className="flex items-center w-full px-4 py-3 text-base text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20">
                                         <Icon icon="tabler:logout" width={18} className="mr-3" />
                                         Log Out

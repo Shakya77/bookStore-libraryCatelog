@@ -17,21 +17,25 @@ import Wishlist from "./views/user/Wishlist";
 import PublicRoute from "./utils/PublicRoutes";
 
 function App() {
+  function handleLogout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("user");
+  }
+
   return (
     <>
       <Router>
         <Routes>
-
           <Route path="*" element={<NotFoundPage />} />
 
           <Route element={<GuestLayout />}>
             <Route path="/" element={<Welcome />} />
             <Route path="/about" element={<>About</>} />
-
           </Route>
 
           <Route element={<PrivateRoutes role="admin" />}>
-            <Route element={<AuthLayout />}>
+            <Route element={<AuthLayout logout={handleLogout} />}>
               <Route path="/admin" element={<Dashboard />} />
               <Route path="/author" element={<Author />} />
               <Route path="/category" element={<Category />} />
@@ -39,7 +43,7 @@ function App() {
           </Route>
 
           <Route element={<PrivateRoutes role="user" />}>
-            <Route element={<GuestLayout />}>
+            <Route element={<GuestLayout logout={handleLogout} />}>
               <Route path="/user" element={<Profile />} />
               <Route path="/user/author" element={<BookRead />} />
               <Route path="/user/category" element={<Wishlist />} />

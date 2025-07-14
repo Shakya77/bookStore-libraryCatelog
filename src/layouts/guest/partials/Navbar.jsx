@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { SubmenuBar } from "../../../views/guest/partials/SubmenuBar"
 
-export default function Navbar() {
+export default function Navbar({ logout }) {
     const navigate = useNavigate()
 
     const handleNavigation = (url) => {
@@ -28,10 +28,16 @@ export default function Navbar() {
                             Dashboard
                         </button>
                         {isLoggedIn ?
-                            <button onClick={() => handleNavigation('/user')}
-                                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                Profile
-                            </button>
+                            <>
+                                <button onClick={() => handleNavigation('/user')}
+                                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                    Profile
+                                </button>
+                                <button onClick={() => logout()}
+                                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                    Log Out
+                                </button>
+                            </>
                             :
                             <>
                                 <button onClick={() => handleNavigation('/login')}

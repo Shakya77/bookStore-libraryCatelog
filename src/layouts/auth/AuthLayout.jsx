@@ -4,7 +4,7 @@ import Sidebar from "./partials/Sidebar"
 import Preloader from "./partials/Preloader"
 import { Outlet } from "react-router-dom"
 
-const AuthLayout = () => {
+const AuthLayout = ({ logout }) => {
     const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
         return localStorage.getItem("sidebarCollapsed") === "true"
     })
@@ -22,7 +22,7 @@ const AuthLayout = () => {
         setTheme(initialTheme)
         if (initialTheme === "dark") {
             document.documentElement.classList.add("dark")
-        } else {        
+        } else {
             document.documentElement.classList.remove("dark")
         }
 
@@ -130,7 +130,7 @@ const AuthLayout = () => {
 
             <Preloader isVisible={isLoading} />
 
-            <Navbar
+            <Navbar logout={logout}
                 sidebarCollapsed={sidebarCollapsed}
                 toggleSidebar={toggleSidebar}
                 theme={theme}
