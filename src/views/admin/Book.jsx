@@ -2,11 +2,10 @@ import { useEffect, useState } from "react"
 import DataTable from "react-data-table-component"
 import { Icon } from "@iconify/react"
 import toast from "react-hot-toast"
-import AuthorModal from "../modals/AuthorModal"
 import DeleteModal from "../modals/DeleteModal"
-import CategoryModal from "../modals/CategoryModal"
+import BookModal from "../modals/BookModal"
 
-export default function Category() {
+export default function Book() {
     const [category, setCategory] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -31,11 +30,19 @@ export default function Category() {
         },
         {
             name: "Name",
-            selector: (row) => row.name,
+            selector: (row) => row.title,
         },
         {
-            name: "Icon",
-            selector: (row) => row.icon,
+            name: "Description",
+            selector: (row) => row.description,
+        },
+        {
+            name: "published_at",
+            selector: (row) => row.published_at,
+        },
+        {
+            name: "author",
+            selector: (row) => row.author,
         },
         {
             name: "Actions",
@@ -112,7 +119,7 @@ export default function Category() {
     const fetchCategory = async () => {
         toast.loading("Loading Category...", { id: "loading-category" })
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/category/getAll`)
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/book/getAll`)
             if (!res.ok) throw new Error("Failed to fetch")
             const data = await res.json()
             setCategory(data.data)
@@ -143,15 +150,19 @@ export default function Category() {
     const handleModalSubmit = async (formData) => {
         // Handle form submission logic here
         const payload = new FormData()
-        if (formData.name) payload.append("name", formData.name)
-        if (formData.icon) payload.append("icon", formData.icon)
+        if (formData.title) payload.append("title", formData.title)
+        if (formData.coverImage) payload.append("coverImage", formData.coverImage)
+        if (formData.published_at) payload.append("published_at", formData.published_at.toISOString().split("T")[0])
+        if (formData.description) payload.append("description", formData.description)
+        if (formData.category) payload.append("category", formData.category)
+        if (formData.author) payload.append("author", formData.author)
         if (editingCategory) payload.append("_method", "PUT")
 
         try {
             const response = await fetch(
                 editingCategory
                     ? `${import.meta.env.VITE_API_URL}/category/${editingCategory.id}` // PUT
-                    : `${import.meta.env.VITE_API_URL}/category/store`, // POST
+                    : `${import.meta.env.VITE_API_URL}/book/store`, // POST
                 {
                     method: "POST",
                     headers: {
@@ -203,7 +214,7 @@ export default function Category() {
 
 
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
-                <h2 className="text-xl font-semibold">Category List</h2>
+                <h2 className="text-xl font-semibold">Book List</h2>
 
                 <div className="flex items-center gap-5">
                     <input type="text" placeholder="Search by category name"
@@ -212,7 +223,7 @@ export default function Category() {
                     <button onClick={handleAddAuthor}
                         className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition w-full sm:w-auto justify-center sm:justify-start">
                         <Icon icon="tabler:plus" width="18" />
-                        <span>Add Category</span>
+                        <span>Add Book</span>
                     </button>
                 </div>
             </div>
@@ -252,18 +263,18 @@ export default function Category() {
                     noDataComponent={
                         <div className="text-center py-8">
                             <Icon icon="tabler:users" width="48" className="text-gray-400 mx-auto mb-2" />
-                            <p className="text-gray-500">No Category found</p>
+                            <p className="text-gray-500">No Book found</p>
                         </div>
                     }
                 />
             </div>
 
-            <CategoryModal
+            <BookModal
                 key={editingCategory ? `edit-${editingCategory.id}` : `add-${Date.now()}`} // Force remount
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
                 onSubmit={handleModalSubmit}
-                category={editingCategory}
+                book={editingCategory}
             />
 
             {showDeleteConfirm && (

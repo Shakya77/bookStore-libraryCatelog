@@ -15,6 +15,7 @@ import BookRead from "./views/user/BookRead";
 import Settings from "./views/user/Settings";
 import Wishlist from "./views/user/Wishlist";
 import PublicRoute from "./utils/PublicRoutes";
+import Book from "./views/admin/Book";
 
 function App() {
   function handleLogout() {
@@ -39,6 +40,7 @@ function App() {
               <Route path="/admin" element={<Dashboard />} />
               <Route path="/author" element={<Author />} />
               <Route path="/category" element={<Category />} />
+              <Route path="/book" element={<Book />} />
             </Route>
           </Route>
 

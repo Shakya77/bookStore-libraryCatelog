@@ -32,7 +32,7 @@ const Sidebar = ({ collapsed }) => {
         { name: "Dashboard", href: "/admin", icon: "tabler:dashboard" },
         { name: "Author", href: "/author", icon: "tabler:users" },
         { name: "Category", href: "/category", icon: "tabler:package" },
-        { name: "Orders", href: "/orders", icon: "tabler:shopping-cart" },
+        { name: "Book", href: "/book", icon: "solar:book-bold" },
         { name: "Analytics", href: "/analytics", icon: "tabler:chart-line" },
         { name: "Reports", href: "/reports", icon: "tabler:file-text" },
     ]
