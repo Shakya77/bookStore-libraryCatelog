@@ -111,8 +111,7 @@ export function CategorySwiper() {
                             slidesPerView: 6,
                         },
                     }}
-                    className="category-swiper"
-                >
+                    className="category-swiper">
                     {categories.map((category, index) => (
                         <SwiperSlide key={index}>
                             <div className="flex-shrink-0 text-center group w-full outline-none border-none cursor-pointer">

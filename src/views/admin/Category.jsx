@@ -12,7 +12,7 @@ export default function Category() {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const [editingAuthor, setEditingAuthor] = useState(null)
+    const [editingCategory, setEditingCategory] = useState(null)
 
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false) // New state for delete confirmation
     const [authorToDelete, setAuthorToDelete] = useState(null) // New state to store author to be deleted
@@ -32,16 +32,10 @@ export default function Category() {
         {
             name: "Name",
             selector: (row) => row.name,
-            width: "300px",
         },
         {
-            name: "Birthday",
-            selector: (row) => row.birthday,
-            width: "200px",
-        },
-        {
-            name: "Bio",
-            selector: (row) => row.bio,
+            name: "Icon",
+            selector: (row) => row.icon,
         },
         {
             name: "Actions",
@@ -86,7 +80,7 @@ export default function Category() {
 
         toast.loading(`Deleting author ${authorToDelete.name}...`, { id: "deleting-author" })
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/${authorToDelete.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/category/${authorToDelete.id}`, {
                 method: "DELETE",
                 headers: {
                     Accept: "application/json",
@@ -118,13 +112,10 @@ export default function Category() {
     const fetchAuthors = async () => {
         toast.loading("Loading authors...", { id: "loading-authors" })
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/author/getAll`)
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/category/getAll`)
             if (!res.ok) throw new Error("Failed to fetch")
             const data = await res.json()
             setAuthors(data.data)
-            toast.success(`Loaded ${data.data.length} authors`, {
-                id: "loading-authors",
-            })
         } catch (error) {
             toast.error("Failed to load authors", {
                 id: "loading-authors",
@@ -140,30 +131,27 @@ export default function Category() {
     }, [])
 
     const handleAddAuthor = () => {
-        setEditingAuthor(null)
+        setEditingCategory(null)
         setIsModalOpen(true)
     }
 
     const handleEdit = (author) => {
-        setEditingAuthor(author)
+        setEditingCategory(author)
         setIsModalOpen(true)
     }
 
     const handleModalSubmit = async (formData) => {
         // Handle form submission logic here
         const payload = new FormData()
-        payload.append("name", formData.name)
-        if (formData.bio) payload.append("bio", formData.bio)
-        if (formData.birthday)
-            payload.append("birthday", formData.birthday.toISOString().split("T")[0])
-        if (formData.profileImage) payload.append("profileImage", formData.profileImage)
-        if (editingAuthor) payload.append("_method", "PUT")
+        if (formData.name) payload.append("name", formData.name)
+        if (formData.icon) payload.append("icon", formData.icon)
+        if (editingCategory) payload.append("_method", "PUT")
 
         try {
             const response = await fetch(
-                editingAuthor
-                    ? `${import.meta.env.VITE_API_URL}/author/${editingAuthor.id}` // PUT
-                    : `${import.meta.env.VITE_API_URL}/author/store`, // POST
+                editingCategory
+                    ? `${import.meta.env.VITE_API_URL}/category/${editingCategory.id}` // PUT
+                    : `${import.meta.env.VITE_API_URL}/category/store`, // POST
                 {
                     method: "POST",
                     headers: {
@@ -184,9 +172,9 @@ export default function Category() {
                 return
             }
 
-            toast.success(editingAuthor ? "Author updated!" : "Author created!")
+            toast.success(editingCategory ? "Author updated!" : "Author created!")
             setIsModalOpen(false)
-            setEditingAuthor(null)
+            setEditingCategory(null)
             fetchAuthors()
         } catch (err) {
             console.error("Unexpected error:", err)
@@ -198,7 +186,7 @@ export default function Category() {
 
     const handleModalClose = () => {
         setIsModalOpen(false)
-        setEditingAuthor(null)
+        setEditingCategory(null)
     }
 
 
@@ -264,18 +252,18 @@ export default function Category() {
                     noDataComponent={
                         <div className="text-center py-8">
                             <Icon icon="tabler:users" width="48" className="text-gray-400 mx-auto mb-2" />
-                            <p className="text-gray-500">No authors found</p>
+                            <p className="text-gray-500">No Category found</p>
                         </div>
                     }
                 />
             </div>
 
             <CategoryModal
-                key={editingAuthor ? `edit-${editingAuthor.id}` : `add-${Date.now()}`} // Force remount
+                key={editingCategory ? `edit-${editingCategory.id}` : `add-${Date.now()}`} // Force remount
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
                 onSubmit={handleModalSubmit}
-                category={editingAuthor}
+                category={editingCategory}
             />
 
             {showDeleteConfirm && (

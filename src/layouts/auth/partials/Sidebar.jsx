@@ -29,7 +29,7 @@ const Sidebar = ({ collapsed }) => {
     const currentRoute = location.pathname
 
     const navigationItems = [
-        { name: "Dashboard", href: "/dashboard", icon: "tabler:dashboard" },
+        { name: "Dashboard", href: "/admin", icon: "tabler:dashboard" },
         { name: "Author", href: "/author", icon: "tabler:users" },
         { name: "Category", href: "/category", icon: "tabler:package" },
         { name: "Orders", href: "/orders", icon: "tabler:shopping-cart" },
