@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+"use client"
+
 import { Icon } from "@iconify/react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
@@ -7,24 +8,71 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 
 export function CategorySwiper() {
-    const [categories, setCategories] = useState([])
-
-    const fetchCategories = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/welcome/category`) // ⬅️ Replace with your actual API endpoint
-            const data = await response.json()
-            setCategories(data.categories)
-        } catch (error) {
-            console.error("Failed to fetch categories:", error)
-        }
-    }
-
-    useEffect(() => {
-        fetchCategories()
-    }, [])
+    const categories = [
+        {
+            name: "Arts & Photography",
+            icon: "mdi:palette",
+            color: "bg-pink-100 text-pink-600",
+            description: "Visual arts and photography",
+        },
+        {
+            name: "Boxed Sets",
+            icon: "mdi:package-variant",
+            color: "bg-orange-100 text-orange-600",
+            description: "Complete book collections",
+        },
+        {
+            name: "Business and Investing",
+            icon: "mdi:briefcase",
+            color: "bg-amber-100 text-amber-600",
+            description: "Business and finance guides",
+        },
+        {
+            name: "Fiction and Literature",
+            icon: "mdi:shield-outline",
+            color: "bg-red-100 text-red-600",
+            description: "Stories and classic literature",
+        },
+        {
+            name: "Foreign Languages",
+            icon: "mdi:translate",
+            color: "bg-blue-100 text-blue-600",
+            description: "Books in different languages",
+        },
+        {
+            name: "History, Biography, and Politics",
+            icon: "mdi:message-text",
+            color: "bg-cyan-100 text-cyan-600",
+            description: "Historical and biographical works",
+        },
+        {
+            name: "Kids and Teens",
+            icon: "mdi:emoticon-happy",
+            color: "bg-pink-100 text-pink-600",
+            description: "Books for young readers",
+        },
+        {
+            name: "Learning and Reference",
+            icon: "mdi:feather",
+            color: "bg-gray-100 text-gray-600",
+            description: "Educational and reference materials",
+        },
+        {
+            name: "Lifestyle and Wellness",
+            icon: "mdi:account-star",
+            color: "bg-green-100 text-green-600",
+            description: "Health and lifestyle guides",
+        },
+        {
+            name: "Manga and Graphic Novels",
+            icon: "mdi:lightning-bolt",
+            color: "bg-blue-100 text-blue-600",
+            description: "Comics and graphic stories",
+        },
+    ]
 
     return (
-        <section>
+        <section className="">
             <div className="flex items-center justify-between mb-8">
                 <div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">Category</h3>
@@ -50,10 +98,18 @@ export function CategorySwiper() {
                         prevEl: ".swiper-button-prev-custom",
                     }}
                     breakpoints={{
-                        640: { slidesPerView: 3 },
-                        768: { slidesPerView: 4 },
-                        1024: { slidesPerView: 5 },
-                        1280: { slidesPerView: 6 },
+                        640: {
+                            slidesPerView: 3,
+                        },
+                        768: {
+                            slidesPerView: 4,
+                        },
+                        1024: {
+                            slidesPerView: 5,
+                        },
+                        1280: {
+                            slidesPerView: 6,
+                        },
                     }}
                     className="category-swiper">
                     {categories.map((category, index) => (
