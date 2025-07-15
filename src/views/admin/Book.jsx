@@ -19,7 +19,7 @@ export default function Book() {
     const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-        document.title = "Category"
+        document.title = "Book"
     }, [])
 
     const columns = [
@@ -37,11 +37,11 @@ export default function Book() {
             selector: (row) => row.description,
         },
         {
-            name: "published_at",
+            name: "Published At",
             selector: (row) => row.published_at,
         },
         {
-            name: "author",
+            name: "Author",
             selector: (row) => row.author,
         },
         {
@@ -87,7 +87,7 @@ export default function Book() {
 
         toast.loading(`Deleting author ${authorToDelete.name}...`, { id: "deleting-author" })
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/category/${authorToDelete.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/book/${authorToDelete.id}`, {
                 method: "DELETE",
                 headers: {
                     Accept: "application/json",
@@ -161,7 +161,7 @@ export default function Book() {
         try {
             const response = await fetch(
                 editingCategory
-                    ? `${import.meta.env.VITE_API_URL}/category/${editingCategory.id}` // PUT
+                    ? `${import.meta.env.VITE_API_URL}/book/${editingCategory.id}` // PUT
                     : `${import.meta.env.VITE_API_URL}/book/store`, // POST
                 {
                     method: "POST",

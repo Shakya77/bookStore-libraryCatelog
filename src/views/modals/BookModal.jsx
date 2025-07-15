@@ -51,21 +51,23 @@ const BookModal = ({ isOpen, onClose, onSubmit, book }) => {
 
         fetchCategories()
         fetchAuthors()
-    }, [isOpen]) // Empty dependency array means these run once on mount
+    }, [isOpen, book]) // Empty dependency array means these run once on mount
 
     useEffect(() => {
         if (book) {
-            const checkImage = `${book.image}`
+            const checkImage = `${book.cover_image}`
             setFormData({
                 title: book.title || "",
                 published_at: book.published_at ? new Date(book.published_at) : null,
                 description: book.description || "",
                 coverImage: null,
-                category: book.category || "", // Assuming book.category will be the ID
-                author: book.author || "", // Assuming book.author will be the ID
+                category: book.category_id || "", // Assuming book.category will be the ID
+                author: book.author_id || "", // Assuming book.author will be the ID
             })
-            if (checkImage !== "null" && book.image) {
-                setImagePreview(book.image.startsWith("http") ? book.image : `/placeholder.svg?height=96&width=96`)
+            console.log(book)
+            if (checkImage !== "null") {
+                const baseUrl = `${import.meta.env.VITE_IMAGE_URL}/book_cover/${checkImage}`;
+                setImagePreview(baseUrl)
             }
         } else {
             setFormData({
@@ -78,7 +80,7 @@ const BookModal = ({ isOpen, onClose, onSubmit, book }) => {
             })
             setImagePreview(null)
         }
-    }, [book, isOpen])
+    }, [book])
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
