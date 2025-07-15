@@ -33,6 +33,7 @@ function App() {
           <Route element={<GuestLayout />}>
             <Route path="/" element={<Welcome />} />
             <Route path="/about" element={<>About</>} />
+            <Route path="/category/:slug" element={<>Slug</>} />
           </Route>
 
           <Route element={<PrivateRoutes role="admin" />}>

@@ -5,9 +5,11 @@ import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
+import { useNavigate } from "react-router-dom"
 
 export function CategorySwiper() {
     const [categories, setCategories] = useState([])
+    const navigate = useNavigate();
 
     const fetchCategories = async () => {
         try {
@@ -53,12 +55,12 @@ export function CategorySwiper() {
                         640: { slidesPerView: 3 },
                         768: { slidesPerView: 4 },
                         1024: { slidesPerView: 5 },
-                        1280: { slidesPerView: 6 },
+                        1280: { slidesPerView: 7 },
                     }}
                     className="category-swiper">
                     {categories.map((category, index) => (
-                        <SwiperSlide key={index}>
-                            <div className="flex-shrink-0 text-center group w-full outline-none border-none cursor-pointer">
+                        <SwiperSlide key={index} onClick={() => (navigate(`/category/${category.slug}`))}>
+                            <div className="flex-shrink-0 text-center group w-full outline-none border-none cursor-pointer p-2">
                                 <div className={`w-16 h-16 rounded-full ${category.color} flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-200`}>
                                     <Icon icon={category.icon} className="w-8 h-8" />
                                 </div>
