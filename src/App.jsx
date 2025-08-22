@@ -8,6 +8,7 @@ import AuthLayout from "./layouts/auth/AuthLayout";
 import Dashboard from "./views/admin/Dashboard";
 import Author from "./views/admin/Author";
 import Category from "./views/admin/Category";
+import AdminSettings from "./views/admin/Settings";
 import { Toaster } from "react-hot-toast";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import Profile from "./views/user/Profile";
@@ -16,6 +17,7 @@ import Settings from "./views/user/Settings";
 import Wishlist from "./views/user/Wishlist";
 import PublicRoute from "./utils/PublicRoutes";
 import Book from "./views/admin/Book";
+import CategoryBooks from "./views/guest/welcome/CategoryBooks";
 
 function App() {
   function handleLogout() {
@@ -33,7 +35,7 @@ function App() {
           <Route element={<GuestLayout />}>
             <Route path="/" element={<Welcome />} />
             <Route path="/about" element={<>About</>} />
-            <Route path="/category/:slug" element={<>Slug</>} />
+            <Route path="/category/:slug" element={<CategoryBooks />} />
           </Route>
 
           <Route element={<PrivateRoutes role="admin" />}>
@@ -42,6 +44,7 @@ function App() {
               <Route path="/author" element={<Author />} />
               <Route path="/category" element={<Category />} />
               <Route path="/book" element={<Book />} />
+              <Route path="/settings" element={<AdminSettings />} />
             </Route>
           </Route>
 
@@ -60,7 +63,7 @@ function App() {
           </Route>
 
         </Routes >
-      </Router >
+      </Router>
 
       <Toaster position="top-right" toastOptions=
         {{

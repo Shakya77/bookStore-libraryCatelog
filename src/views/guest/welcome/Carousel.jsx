@@ -43,7 +43,7 @@ export default function Carousel() {
     ]
 
     return (
-        <div className="">
+        <div className="w-full">
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={30}
@@ -55,7 +55,7 @@ export default function Carousel() {
                 grabCursor={true}
                 pagination={{
                     clickable: true,
-                    bulletClass: "swiper-pagination-bullet w-3 h-3 bg-gray-400 mx-1",
+                    bulletClass: "swiper-pagination-bullet w-3 h-3 bg-gray-400 mx-1 rounded-full",
                     bulletActiveClass: "swiper-pagination-bullet-active bg-blue-600",
                 }}
                 autoplay={{

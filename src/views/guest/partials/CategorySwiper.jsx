@@ -16,6 +16,7 @@ export function CategorySwiper() {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/welcome/category`) // ⬅️ Replace with your actual API endpoint
             const data = await response.json()
             setCategories(data.categories)
+            console.log(data.categories)
         } catch (error) {
             console.error("Failed to fetch categories:", error)
         }
